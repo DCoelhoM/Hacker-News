@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-      @article = Article.new(article_params.merge(:userid => session[:user_id]))
+      @article = Article.new(article_params.merge(:user_id => session[:user_id]))
       @article.save
       redirect_to @article
   end
