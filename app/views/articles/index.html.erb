@@ -1,5 +1,32 @@
+<div>
+    <ul>
+      <li>
+        <%= link_to 'Home', '/' %>
+      </li>
+      <% if current_user %>
+        <li>
+            <%= link_to "Submit", '/articles/new' %>
+        </li>
+      <% end %>
+      <% if current_user %>
+        <li>
+          Signed in as <%= current_user.name %> 
+        </li>
+        <li>
+          <%= link_to "Logout", '/logout' %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to 'Login', '/login' %>
+        </li>
+        <li>
+          <%= link_to 'Signup', '/signup' %>
+        </li>
+      <% end %>
+    </ul>
+</div>
 <table>
-  <% @articles.each do |article| %>
+  <% @articles.first(30).each do |article| %>
     <tr>
       <td><%= article.title %></a></td>
       <td><%= link_to 'Show', article_path(article) %></td>
