@@ -18,6 +18,9 @@
   <%= @article.user_id %>
 </p>
 
+<%= link_to 'UpVote',  [@article, @article.votes.build], method: :post, :vote_value => 1 %>
+<%= link_to 'DownVote',  [@article, @article.votes.build], method: :post, :vote_value => 0 %>
+
 <h2>Comments</h2>
 <% @article.comments.each do |comment| %>
   <p>
@@ -36,5 +39,6 @@
   <%= f.submit %>
   </p>
 <% end %>
+
 
 <%= link_to 'Back', articles_path %>
