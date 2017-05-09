@@ -7,11 +7,16 @@
   </li>
 </ul>
 <h1>Login</h1>
-
 <%= form_tag '/login' do %>
-
-  Email: <%= text_field_tag :email %>
-  Password: <%= password_field_tag :password %>
-  <%= submit_tag "Submit" %>
-
+  <p>
+    <label><b>Email</b></label><br>
+    <%= text_field_tag :email %>
+  </p>
+  <p>
+    <label><b>Password</b></label><br>
+    <%= password_field_tag :password %>
+  </p>
+  <p>
+    <%= submit_tag "Submit" %>
+  </p>
 <% end %>
