@@ -41,14 +41,14 @@
           0
         <%end%>
       </td>
-      <td style="float: left;">Downvotes: 
+      <td style="float: left;">&emsp;Downvotes: 
         <%if article.votes.group(:value).count[0] %>
           <%= article.votes.group(:value).count[0] %>
         <%else%>
           0
         <%end%>
       </td>
-      <td style="float: left;">Comments:
+      <td style="float: left;">&emsp;Comments:
         <%= article.comments.count %>
       </td>
       <td style="float: right;">
