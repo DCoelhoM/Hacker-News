@@ -1,26 +1,23 @@
-<div>
-  <ul>
-    <li>
-      <%= link_to 'Home', '/' %>
+<ul>
+  <li>
+    <%= link_to 'Home', '/' %>
+  </li>
+  <% if current_user %>
+    <li style="float:right;">
+      <%= link_to "Logout", '/logout' %>
     </li>
-    <% if current_user %>
-      <li>
-        Signed in as <%= current_user.name %>
-      </li>
-      <li>
-        <%= link_to "Logout", '/logout' %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to 'Login', '/login' %>
-      </li>
-      <li>
-        <%= link_to 'Signup', '/signup' %>
-      </li>
-    <% end %>
-  </ul>
-</div>
-
+    <li style="float:right;">
+      <span>Signed in as <%= current_user.name %></span>
+    </li>
+  <% else %>
+    <li style="float:right;">
+      <%= link_to 'Signup', '/signup' %>
+    </li>
+    <li style="float:right;">
+      <%= link_to 'Login', '/login' %>
+    </li>
+  <% end %>
+</ul>
 <h1>Submit Article</h1>
 <%= form_for :article, url: articles_path do |f| %>
   <p>

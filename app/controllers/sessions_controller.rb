@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  before_action :already_connected, only: [:create]
   def create
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :already_connected
   def new
   end
 

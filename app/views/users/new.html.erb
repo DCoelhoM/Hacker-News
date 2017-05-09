@@ -1,3 +1,11 @@
+<ul>
+  <li>
+    <%= link_to 'Home', '/' %>
+  </li>
+  <li style="float:right;">
+    <%= link_to 'Login', '/login' %>
+  </li>
+</ul>
 <h1>Signup!</h1>
 
 <%= form_for :user, url: '/users' do |f| %>
@@ -8,4 +16,4 @@
     Password Confirmation: <%= f.password_field :password_confirmation %>
     <%= f.submit "Submit" %>
 
-  <% end %>
+<% end %>
