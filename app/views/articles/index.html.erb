@@ -24,11 +24,39 @@
 
   <% end %>
 </ul>
-<table>
+<div class="articles">
+<table class="articles">
   <% @articles.first(30).each do |article| %>
     <tr>
-      <td><%= article.title %></a></td>
-      <td><%= link_to 'Show', article_path(article) %></td>
+      <td>
+        <%= link_to "#{article.title}", article_path(article) %>
+        (<%= article.source %>)
+      </td>
     </tr>
+    <tr>
+      <td style="float: left;">Upvotes: 
+        <%if article.votes.group(:value).count[1] %>
+          <%= article.votes.group(:value).count[1] %>
+        <%else%>
+          0
+        <%end%>
+      </td>
+      <td style="float: left;">Downvotes: 
+        <%if article.votes.group(:value).count[0] %>
+          <%= article.votes.group(:value).count[0] %>
+        <%else%>
+          0
+        <%end%>
+      </td>
+      <td style="float: left;">Comments:
+        <%= article.comments.count %>
+      </td>
+      <td style="float: right;">
+        Created by
+        <%= User.find_by_id(article.user_id).name %>
+      </td>
+    </tr>
+
   <% end %>
 </table>
+</div>

@@ -23,73 +23,77 @@
     </li>
   <% end %>
 </ul>
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
 
-<p>
-  <strong>Source:</strong>
-  <%= @article.source %>
-</p>
- 
-<p>
-  <strong>Text:</strong>
-  <%= @article.text %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @article.user_id %>
-</p>
-
-<p>
-  <strong>Upvotes:</strong>
-  <%if @article.votes.group(:value).count[1] %>
-    <%= @article.votes.group(:value).count[1] %>
-  <%else%>
-    0
-  <%end%>
-</p>
-
-<p>
-  <strong>Downvotes:</strong>
-  <%if @article.votes.group(:value).count[0] %>
-    <%= @article.votes.group(:value).count[0] %>
-  <%else%>
-    0
-  <%end%>
-</p>
-
-<p>
-  <strong>Number of Comments:</strong>
-  <%if @article.comments.count %>
-    <%= @article.comments.count %>
-  <%else%>
-    0
-  <%end%>
-</p>
-<%= link_to 'UpVote',  [@article, @article.votes.build, :vote_value => 1], method: :post %>
-<%= link_to 'DownVote',  [@article, @article.votes.build, :vote_value => 0], method: :post %>
-
-<h2>Comments</h2>
-<% @article.comments.each do |comment| %>
-  <p>
-  <strong>Comment:</strong>
-  <%= comment.body %>
-  </p>
-<% end %>
-
-<h2>Add a comment:</h2>
-<%= form_for([@article, @article.comments.build]) do |f| %>
-  <p>
-  <%= f.label :body %><br>
-  <%= f.text_area :body %>
-  </p>
-  <p>
-  <%= f.submit %>
-  </p>
-<% end %>
-
-
-<%= link_to 'Back', articles_path %>
+<table class="articles">
+  <tr>
+    <td>
+      <%= @article.title %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= @article.text %>
+    </td>
+  </tr>
+  <tr>
+    <td style="float: left;">
+      Source: 
+      <%= @article.source %>
+    </td>
+    <td style="float: right;">
+      Created by: 
+      <%= User.find_by_id(@article.user_id).name %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      (
+      <%if @article.votes.group(:value).count[1] %>
+        <%= @article.votes.group(:value).count[1] %>
+      <%else%>
+        0
+      <%end%>
+      )
+      <%= link_to "UpVote",  [@article, @article.votes.build, :vote_value => 1], method: :post %>
+      &emsp;(
+      <%if @article.votes.group(:value).count[0] %>
+        <%= @article.votes.group(:value).count[0] %>
+      <%else%>
+        0
+      <%end%>
+      )
+      <%= link_to "DownVote",  [@article, @article.votes.build, :vote_value => 0], method: :post %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Comments</strong>
+    </td>
+  </tr>
+  <% @article.comments.each do |comment| %>
+    <tr>
+      <td>
+        <%= comment.body %>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        Created by: 
+        <%= User.find_by_id(@article.user_id).name %>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td>
+      <strong>Add a comment</strong>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <%= form_for([@article, @article.comments.build]) do |f| %>
+        <%= f.text_area :body %><br>
+        <%= f.submit %>
+      <% end %>
+    </td>
+  </tr>
+</table>

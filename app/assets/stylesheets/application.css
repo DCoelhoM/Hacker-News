@@ -44,3 +44,11 @@ li a, span{
 li a:hover {
   background-color: #111111;
 }
+
+.articles {
+  width: 80%;
+  padding: 16px;
+  margin: 10px auto;
+  text-align: left;
+  align-content: center;
+}
