@@ -20,6 +20,15 @@
 </ul>
 <h1>Submit Article</h1>
 <%= form_for :article, url: articles_path do |f| %>
+  <% if @article.errors.any? %>
+      <h2>
+        <%= pluralize(@article.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+        <% @article.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+        <% end %>
+  <% end %>
   <p>
   <%= f.label :title %><br>
   <%= f.text_field :title %>
